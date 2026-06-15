@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoCidade</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2>🌱 EcoCidade</h2>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#usuarios">Usuários</a>
+            <a href="#pontos">Pontos</a>
+            <a href="#relatorios">Relatórios</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+
+        <section class="card hero">
+            <h1>🌍 EcoCidade Inteligente</h1>
+            <img src="{{ url_for('static', filename='images/eco.jpg') }}">
+        </section>
+
+        <section class="grid">
+            <div class="card stat">👤 Usuários <strong id="total-usuarios">0</strong></div>
+            <div class="card stat">📍 Pontos <strong id="total-pontos">0</strong></div>
+            <div class="card stat">🚛 Coletas <strong id="total-coletas">0</strong></div>
+        </section>
+
+        <section id="usuarios" class="card">
+            <h2>Cadastro</h2>
+
+            <input id="usuario-nome" placeholder="Nome">
+            <input id="usuario-email" placeholder="Email">
+            <input id="usuario-senha" type="password" placeholder="Senha">
+
+            <button onclick="cadastrarUsuario()">Cadastrar</button>
+        </section>
+
+        <section id="pontos" class="card">
+            <h2>Pontos</h2>
+
+            <button onclick="carregarPontos()">Carregar</button>
+            <div id="lista-pontos"></div>
+        </section>
+
+        <section id="relatorios" class="card">
+            <h2>Relatório</h2>
+
+            <button onclick="gerarRelatorio()">Gerar relatório</button>
+
+            <div id="relatorio-output"></div>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

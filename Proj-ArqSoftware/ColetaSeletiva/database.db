@@ -1,0 +1,39 @@
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE materiais (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+INSERT INTO materiais (nome) VALUES
+('Papel'),
+('Plástico'),
+('Vidro'),
+('Metal'),
+('Eletrônico');
+CREATE TABLE coletas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    material_id INT NOT NULL,
+    quantidade DECIMAL(10,2),
+    endereco VARCHAR(255) NOT NULL,
+    data_coleta DATE NOT NULL,
+    status VARCHAR(20) DEFAULT 'Pendente',
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (material_id) REFERENCES materiais(id)
+);
+SELECT
+    c.id,
+    u.nome AS usuario,
+    m.nome AS material,
+    c.quantidade,
+    c.endereco,
+    c.data_coleta,
+    c.status
+FROM coletas c
+JOIN usuarios u ON c.usuario_id = u.id
+JOIN materiais m ON c.material_id = m.id;
